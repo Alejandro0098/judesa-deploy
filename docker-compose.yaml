@@ -5,13 +5,12 @@ services:
       context: .
       dockerfile: apps/docker/web/Dockerfile
     volumes:
-      - static:/app/web/static
-
+      - static:/app/web/static/
     ports:
       - 8000:8000
     env_file:
       - ./apps/web/.env
-  
+
   www:
     container_name: www
     build:
@@ -22,18 +21,19 @@ services:
 
     ports:
       - 3000:3000
-  
+
   nginx:
     container_name: nginx
     build:
       context: .
       dockerfile: apps/docker/nginx/Dockerfile
     volumes:
-      - static:/app/web/static
+      - static:/app/web/static/
     ports:
       - 80:80
+    depends_on:
+      - www
 
 volumes:
   static:
   node_modules:
-  
