@@ -8,6 +8,7 @@ WORKDIR /app/web
 COPY ./apps/web/ .
 
 RUN python -m ensurepip --upgrade && \
+    pip install python-dateutil && \
     pip install -r /app/web/requirements.txt && \
     chmod +x /app/web/scripts/entrypoint.sh && \
     chmod +x /app/web/scripts/createsuperuser.sh && \
@@ -17,4 +18,4 @@ RUN python -m ensurepip --upgrade && \
     bash /app/web/scripts/collectstatic.sh && \
     bash /app/web/scripts/createsuperuser.sh
 
-CMD ["/app/web/scripts/entrypoint.sh"]
+ENTRYPOINT ["/app/web/scripts/entrypoint.sh"]
