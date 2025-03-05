@@ -8,7 +8,8 @@ WORKDIR /app/web
 COPY ./apps/web/ .
 
 RUN python -m ensurepip --upgrade && \
-    pip install python-dateutil && \
+    apt-get update && \
+    apt-get install -y cron && \
     pip install -r /app/web/requirements.txt && \
     chmod +x /app/web/scripts/entrypoint.sh && \
     chmod +x /app/web/scripts/createsuperuser.sh && \
@@ -16,6 +17,7 @@ RUN python -m ensurepip --upgrade && \
     chmod +x /app/web/scripts/collectstatic.sh && \
     bash /app/web/scripts/migrations.sh && \
     bash /app/web/scripts/collectstatic.sh && \
-    bash /app/web/scripts/createsuperuser.sh
+    bash /app/web/scripts/createsuperuser.sh && \
+    service cron start
 
 ENTRYPOINT ["/app/web/scripts/entrypoint.sh"]

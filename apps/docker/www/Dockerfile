@@ -2,7 +2,7 @@ FROM node:20.18.0-alpine
 
 CMD ["mkdir", "/app/www/"]
 
-WORKDIR /app/wwww/
+WORKDIR /app/www/
 
 COPY ./apps/www/ .
 

@@ -6,6 +6,7 @@ services:
       dockerfile: apps/docker/web/Dockerfile
     volumes:
       - static:/app/web/static/
+      - ./backups:/app/web/db/backups/
     ports:
       - 8000:8000
     env_file:
