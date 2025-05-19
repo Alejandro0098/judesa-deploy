@@ -8,6 +8,7 @@ COPY ./apps/www/ .
 
 RUN npm install 
 RUN npm i pm2-runtime
+RUN npm i sharp
 
 RUN npm run build
 

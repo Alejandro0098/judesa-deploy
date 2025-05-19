@@ -21,3 +21,5 @@ RUN python -m ensurepip --upgrade && \
     service cron start
 
 ENTRYPOINT ["/app/web/scripts/entrypoint.sh"]
+
+EXPOSE 8000
