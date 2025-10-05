@@ -6,8 +6,9 @@ services:
       dockerfile: apps/docker/web/Dockerfile
     volumes:
       - static:/app/web/static/
-      - ./backups:/app/web/db/backups/
+      - ./backups:/app/web/backups/
       - ./media:/app/web/media/
+      - ./database:/app/web/db/
     ports:
       - 8000:8000
     expose:
