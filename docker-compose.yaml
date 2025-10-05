@@ -32,13 +32,15 @@ services:
       dockerfile: apps/docker/nginx/Dockerfile
     volumes:
       - static:/app/web/static/
+      - ./letsencrypt:/etc/letsencrypt:ro
+      - ./webroot:/var/www/html
     ports:
       - 80:80
-      - 443:443
-    restart: always
+      - 443:443s
     depends_on:
-      - web
       - www
+      - web
+    restart: unless-stopped
 
 volumes:
   static:
