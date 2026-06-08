@@ -1,0 +1,34 @@
+# Git y entorno local
+.git
+.gitignore
+.vscode
+venv
+.env
+.env.*
+
+# Datos de runtime (se montan como volúmenes)
+media
+database
+backups
+letsencrypt
+webroot
+
+# Next.js: se instala y construye dentro del contenedor
+apps/www/node_modules
+apps/www/.next
+apps/www/out
+
+# Django: datos locales que no van en la imagen
+apps/web/db
+apps/web/media
+apps/web/staticfiles
+apps/web/**/*.pyc
+apps/web/**/__pycache__
+
+# Certificados y SSL locales
+apps/docker/nginx/ssl
+
+# Documentación y misc
+**/*.md
+**/.DS_Store
+**/Thumbs.db

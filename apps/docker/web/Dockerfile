@@ -11,10 +11,9 @@ RUN python -m ensurepip --upgrade && \
     apt-get update && \
     apt-get install -y cron && \
     pip install -r /app/web/requirements.txt && \
-    chmod +x /app/web/scripts/entrypoint.sh && \
-    chmod +x /app/web/scripts/createsuperuser.sh && \
-    chmod +x /app/web/scripts/migrations.sh && \
-    chmod +x /app/web/scripts/collectstatic.sh && \
+    sed -i 's/\r$//' /app/web/scripts/*.sh && \
+    chmod +x /app/web/scripts/*.sh && \
+    mkdir -p /app/web/db && \
     bash /app/web/scripts/migrations.sh && \
     bash /app/web/scripts/collectstatic.sh && \
     bash /app/web/scripts/createsuperuser.sh && \

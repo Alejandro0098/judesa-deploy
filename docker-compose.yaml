@@ -9,8 +9,6 @@ services:
       - ./backups:/app/web/backups/
       - ./media:/app/web/media/
       - ./database:/app/web/db/
-    ports:
-      - 8000:8000
     expose:
       - 8000
     env_file:
@@ -23,8 +21,8 @@ services:
       dockerfile: apps/docker/www/Dockerfile
     volumes:
       - node_modules:/app/www/node_modules
-    ports:
-      - 3000:3000
+    expose:
+      - 3000
 
   nginx:
     container_name: nginx
@@ -33,11 +31,9 @@ services:
       dockerfile: apps/docker/nginx/Dockerfile
     volumes:
       - static:/app/web/static/
-      - ./letsencrypt:/etc/letsencrypt:ro
-      - ./webroot:/var/www/html
-    ports:
-      - 80:80
-      - 443:443s
+    expose:
+      - 80
+      - 443
     depends_on:
       - www
       - web
